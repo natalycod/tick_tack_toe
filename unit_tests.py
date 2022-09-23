@@ -5,13 +5,24 @@ from tick_tack_toe_utils import TickTackToeCells, TickTackToePlayers, TickTackTo
 
 class Generator:
     def gen_win_field(n, symb):
-        print('There is no generator here')
+        f = Field(n)
+        for i in range(n):
+            f.put_cell(i, i, symb)
+        return f
 
-    def gen_draw_field(n, symb):
-        print('There is no generator here')
+    def gen_draw_field(n):
+        f = Field(n)
+        for i in range(n):
+            for j in range(n):
+                if (i + j) % 2 == 0:
+                    f.put_cell(i, j, TickTackToeCells.X)
+                else:
+                    f.put_cell(i, j, TickTackToeCells.O)
 
-    def gen_not_ended_field(n, symb):
-        print('There is no generator here')
+    def gen_not_ended_field(n):
+        f = Field(n)
+        f.put_cell(0, 0, TickTackToeCells.X)
+        f.put_cell(0, 1, TickTackToeCells.O)
 
 class FieldTests:
     def gen_rand_field():
@@ -50,10 +61,6 @@ class FieldTests:
             f.put_cell(x, y, state)
             assert f.field[x][y] == state, 'put_cell should put value to cell'
 
-    def current_state_test():
-        print('no test here, sorry :(')
-        # there should be test
-
 class TickTackToeTests:
     def init_test():
         players = [TickTackToePlayers.COMPUTER, TickTackToePlayers.USER]
@@ -67,10 +74,6 @@ class TickTackToeTests:
             assert game.user_symbol == TickTackToeCells.X, 'User should have X symbol'
         else:
             assert game.user_symbol == TickTackToeCells.O, 'User should have O symbol'
-
-    def get_result_test():
-        print('no test here, sorry :(')
-        # there should be test
 
     def make_move_test():
         players = [TickTackToePlayers.COMPUTER, TickTackToePlayers.USER]
@@ -101,19 +104,13 @@ class TickTackToeTests:
                     assert not game.make_move(x, y),\
                          'Nobody should be able to make a move to not empty cell'
 
-        print('no test here, sorry :(')
-        # there should be test
-
-    def minimax_best_move_test():
-        print('no test here, sorry :(')
-        # there should be test
-
-    def find_best_move_test():
-        print('no test here, sorry :(')
-        # there should be test
-
-#test Field class
-for i in range(1000):
+# test Field class
+for i in range(10):
     FieldTests.init_test()
     FieldTests.get_cell_test()
     FieldTests.put_cell_test()
+
+# test TickTackToe Class
+for i in range(10):
+    TickTackToeTests.init_test()
+    TickTackToeTests.make_move_test()
