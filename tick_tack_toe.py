@@ -13,7 +13,11 @@ class TickTackToe:
             self.user_symbol = TickTackToeCells.O
 
     def print_rules():
-        print("There should be rules (there are no rules now)")
+        print("Tick-Tack-Toe rules:")
+        print("There is a squared field sized N, initially empty.")
+        print("Every step is putting your symbol in an empty cell.")
+        print("You and computer are taking turns. The first person who collect a row of N his symbols, win.")
+        print()
 
     def print_field(self):
         print('Current field:')
